@@ -78,4 +78,14 @@ if s:UseTmuxNavigatorMappings()
   nnoremap <silent> <F6> :TmuxNavigateDownZoom<cr>
   nnoremap <silent> <F7> :TmuxNavigateUpZoom<cr>
   nnoremap <silent> <F8> :TmuxNavigateRightZoom<cr>
+  
+  inoremap <silent> <F1> <ESC>:TmuxNavigateLeft<cr>i
+  inoremap <silent> <F2> <ESC>:TmuxNavigateDown<cr>i
+  inoremap <silent> <F3> <ESC>:TmuxNavigateUp<cr>i
+  inoremap <silent> <F4> <ESC>:TmuxNavigateRight<cr>i
+
+  inoremap <silent> <F5> <ESC>:TmuxNavigateLeftZoom<cr>i
+  inoremap <silent> <F6> <ESC>:TmuxNavigateDownZoom<cr>i
+  inoremap <silent> <F7> <ESC>:TmuxNavigateUpZoom<cr>i
+  inoremap <silent> <F8> <ESC>:TmuxNavigateRightZoom<cr>i
 endif
