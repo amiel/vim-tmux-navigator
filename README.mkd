@@ -23,8 +23,6 @@ Vim panes and tmux splits seamlessly.
 **Note** - you don't need to use your tmux `prefix` key sequence before using
 the mappings.
 
-If you want to use alternate key mappings, see the [configuration section
-below][].
 
 Installation
 ------------
@@ -101,6 +99,5 @@ script][] which has a more robust check.
 [Mislav Marohnić's]: http://mislav.uniqpath.com/
 [Mislav's original external script]: https://github.com/mislav/dotfiles/blob/master/bin/tmux-vim-select-pane
 [Vundle]: https://github.com/gmarik/vundle
-[configuration section below]: #custom-key-bindings
 [this blog post]: http://www.codeography.com/2013/06/19/navigating-vim-and-tmux-splits
 [this gist]: https://gist.github.com/mislav/5189704
