@@ -38,7 +38,7 @@ install the plugin:
 Add the following line to your `~/.vimrc` file
 
 ``` vim
-Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'amiel/vim-tmux-navigator'
 ```
 
 ### Tmux
@@ -48,49 +48,16 @@ this customization.
 
 ``` tmux
 # Smart pane switching with awareness of vim splits
-bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim$' && tmux send-keys C-h) || tmux select-pane -L"
-bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim$' && tmux send-keys C-j) || tmux select-pane -D"
-bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim$' && tmux send-keys C-k) || tmux select-pane -U"
-bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim$' && tmux send-keys C-l) || tmux select-pane -R"
-bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim$' && tmux send-keys 'C-\\') || tmux select-pane -l"
+bind -n C-k run-shell 'tmux-vim-select-pane.rb -U'
+bind -n C-j run-shell 'tmux-vim-select-pane.rb -D'
+bind -n C-h run-shell 'tmux-vim-select-pane.rb -L'
+bind -n C-l run-shell 'tmux-vim-select-pane.rb -R'
+bind -n C-\ run-shell 'tmux-vim-select-pane.rb -l'
+
 ```
 
-Thanks to Christopher Sexton who provided the updated tmux configuration in
-[this blog post][].
+And make sure [tmux-vim-select-pane.rb](https://github.com/amiel/dotfiles/blob/master/bin/tmux-vim-select-pane.rb) is in your PATH.
 
-Configuration
--------------
-
-### Custom Key Bindings
-
-If you don't want the plugin to create any mappings, you can use the five
-provided functions to define your own custom maps. You will need to define
-custom mappings in your `~/.vimrc` as well as update the bindings in tmux to
-match.
-
-#### Vim
-
-Add the following to your `~/.vimrc` to define your custom maps:
-
-``` vim
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> {Left-mapping} :TmuxNavigateLeft<cr>
-nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
-nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
-nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
-nnoremap <silent> {Previoust-Mapping} :TmuxNavigatePrevious<cr>
-```
-
-*Note* Each instance of `{Left-Mapping}` or `{Down-Mapping}` must be replaced
-in the above code with the desired mapping. Ie, the mapping for `<ctrl-h>` =>
-Left would be created with `nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>`.
-
-#### Tmux
-
-Alter each of the five lines of the tmux configruation listed above to use your
-custom mappings. **Note** each line contains two references to the desired
-mapping.
 
 ### Restoring Clear Screen (C-l)
 
