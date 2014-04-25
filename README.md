@@ -2,7 +2,9 @@ Vim Tmux Navigator
 ==================
 
 This plugin is a repackaging of [Mislav Marohnić's][] tmux-navigator
-configuration described in [this gist][].
+configuration described in [this gist][], and a slight rewrite of
+[christoomey's plugin][] that this is a fork of and also incorporates
+the zoom idea from [svenfuchs' gist][].
 
 When combined with a set of tmux key bindings and the provided ruby script,
 the plugin will allow you to navigate seamlessly between vim and tmux splits
@@ -10,11 +12,22 @@ using a consistent set of hotkeys.
 
 **NOTE**: This requires tmux v1.8 or higher.
 
-Difference from christoomey/vim-tmux-navigator
-----------------------------------------------
+Difference from christoomey/vim-tmux-navigator and other influences
+-------------------------------------------------------------------
 
-This fork adds a zoom feature. When navigating past the last screen in any direction,
-(whether it be a vim window or tmux split), this plugin with toggle the tmux zoom feature.
+This plugin and it's parts are based on the fine work by [mislav], [christoomey], and [svenfuchs].
+There were a few things I wanted to change/incorporate. Here's what I changed:
+
+1. This fork adds a zoom feature. When navigating past the last screen in any direction,
+   (whether it be a vim window or tmux split), this plugin with toggle the tmux zoom feature.
+2. This fork uses an external script instead of large inlined shell script. This makes
+   setup a little more complicated, but simplifies the tmux config.
+3. [svenfuchs' gist][] sends :ex commands to vim. Because of this, moving between vim splits
+   doesn't work in insert mode. This fork overrides F1-8 keys. If you use vim mappings for F keys,
+   this plugin probably won't work. However, you should be able to pick your own "secret" mappings
+   in `tmux-vim-select-pane.rb`.
+4. I do not use the *toggle between last active pane* feature, so I have not tried to get it to work.
+
 
 Usage
 -----
@@ -50,8 +63,7 @@ Add the following line to your `~/.vimrc` file
 
 ### tmux-vim-select-pane.rb
 
-Download [tmux-vim-select-pane.rb](https://github.com/amiel/dotfiles/blob/master/bin/tmux-vim-select-pane.rb);
-make sure it is executable and in your path.
+Download [tmux-vim-select-pane.rb][]; make sure it is executable and in your path.
 
 ### Tmux
 
@@ -99,6 +111,9 @@ version to confirm with this shell command:
 tmux -V # should return 'tmux 1.8' or higher
 ```
 
+[christoomey's plugin]: https://github.com/christoomey/vim-tmux-navigator
+[svenfuchs' gist]: https://gist.github.com/svenfuchs/6146321
+[tmux-vim-select-pane.rb]: https://github.com/christoomey/vim-tmux-navigator
 [Brian Hogan]: https://twitter.com/bphogan
 [Mislav Marohnić's]: http://mislav.uniqpath.com/
 [vim-update-bundles]: https://github.com/bronson/vim-update-bundles
