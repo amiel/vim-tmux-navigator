@@ -2,11 +2,19 @@ Vim Tmux Navigator
 ==================
 
 This plugin is a repackaging of [Mislav Marohnić's][] tmux-navigator
-configuration described in [this gist][]. When combined with a set of tmux
-key bindings, the plugin will allow you to navigate seamlessly between
-vim and tmux splits using a consistent set of hotkeys.
+configuration described in [this gist][].
+
+When combined with a set of tmux key bindings and the provided ruby script,
+the plugin will allow you to navigate seamlessly between vim and tmux splits
+using a consistent set of hotkeys.
 
 **NOTE**: This requires tmux v1.8 or higher.
+
+Difference from christoomey/vim-tmux-navigator
+----------------------------------------------
+
+This fork adds a zoom feature. When navigating past the last screen in any direction,
+(whether it be a vim window or tmux split), this plugin with toggle the tmux zoom feature.
 
 Usage
 -----
@@ -18,7 +26,8 @@ Vim panes and tmux splits seamlessly.
 - `<ctrl-j>` => Down
 - `<ctrl-k>` => Up
 - `<ctrl-l>` => Right
-- `<ctrl-\>` => Previous split
+
+When using any of these keys when moving would move off the screen will
 
 **Note** - you don't need to use your tmux `prefix` key sequence before using
 the mappings.
@@ -29,15 +38,20 @@ Installation
 
 ### Vim
 
-If you don't have a preferred installation method, I recommend using [Vundle][].
+If you don't have a preferred installation method, I recommend using [vim-update-bundles][].
 Assuming you have Vundle installed and configured, the following steps will
 install the plugin:
 
 Add the following line to your `~/.vimrc` file
 
 ``` vim
-Bundle 'amiel/vim-tmux-navigator'
+" Bundle 'amiel/vim-tmux-navigator'
 ```
+
+### tmux-vim-select-pane.rb
+
+Download [tmux-vim-select-pane.rb](https://github.com/amiel/dotfiles/blob/master/bin/tmux-vim-select-pane.rb);
+make sure it is executable and in your path.
 
 ### Tmux
 
@@ -50,11 +64,8 @@ bind -n C-k run-shell 'tmux-vim-select-pane.rb -U'
 bind -n C-j run-shell 'tmux-vim-select-pane.rb -D'
 bind -n C-h run-shell 'tmux-vim-select-pane.rb -L'
 bind -n C-l run-shell 'tmux-vim-select-pane.rb -R'
-bind -n C-\ run-shell 'tmux-vim-select-pane.rb -l'
-
 ```
 
-And make sure [tmux-vim-select-pane.rb](https://github.com/amiel/dotfiles/blob/master/bin/tmux-vim-select-pane.rb) is in your PATH.
 
 
 ### Restoring Clear Screen (C-l)
@@ -85,19 +96,11 @@ This functionality requires tmux version 1.8 or higher. You can check your
 version to confirm with this shell command:
 
 ``` bash
-tmux -V # should return 'tmux 1.8'
+tmux -V # should return 'tmux 1.8' or higher
 ```
-
-### It Still Doesn't Work!!!
-
-The tmux configuration uses an inlined grep pattern match to help determine if
-the current pane is running Vim. If you run into any issues with the navigation
-not happening as expected, you can try using [Mislav's original external
-script][] which has a more robust check.
 
 [Brian Hogan]: https://twitter.com/bphogan
 [Mislav Marohnić's]: http://mislav.uniqpath.com/
-[Mislav's original external script]: https://github.com/mislav/dotfiles/blob/master/bin/tmux-vim-select-pane
-[Vundle]: https://github.com/gmarik/vundle
+[vim-update-bundles]: https://github.com/bronson/vim-update-bundles
 [this blog post]: http://www.codeography.com/2013/06/19/navigating-vim-and-tmux-splits
 [this gist]: https://gist.github.com/mislav/5189704
