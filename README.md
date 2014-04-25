@@ -21,11 +21,11 @@ There were a few things I wanted to change/incorporate. Here's what I changed:
 1. This fork adds a zoom feature. When navigating past the last screen in any direction,
    (whether it be a vim window or tmux split), this plugin with toggle the tmux zoom feature.
 2. This fork uses an external script instead of large inlined shell script. This makes
-   setup a little more complicated, but simplifies the tmux config.
+   setup a little more complicated, but simplifies the tmux config. It also requires ruby.
 3. [svenfuchs' gist][] sends :ex commands to vim. Because of this, moving between vim splits
-   doesn't work in insert mode. This fork overrides F1-8 keys. If you use vim mappings for F keys,
-   this plugin probably won't work. However, you should be able to pick your own "secret" mappings
-   in `tmux-vim-select-pane.rb`.
+   doesn't work in insert mode. This fork overrides F1-8 keys, which allows the movements to work
+   in any vim mode. If you use vim mappings for F keys, this plugin probably won't work. However,
+   you should be able to pick your own "secret" mappings in `tmux-vim-select-pane.rb`.
 4. I do not use the *toggle between last active pane* feature, so I have not tried to get it to work.
 
 
